@@ -40,7 +40,7 @@ HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AWS 3-Tier Demo</title>
+    <title>EC2 + RDS</title>
     <style>
         body { font-family: Arial, sans-serif; background: #f4f6f9; padding: 30px; }
         .box { max-width: 600px; margin: auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
