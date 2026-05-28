@@ -1,1 +1,33 @@
+version: '3.8'
 
+services:
+  # 1. Database Container (MySQL)
+  db:
+    image: mysql:8.0
+    container_name: local_mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: localpassword123
+      MYSQL_DATABASE: testdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # 2. Application Container (Python Flask)
+  web:
+    build: .
+    container_name: local_python_web
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: db            # Docker network mein container ka naam hi uski host IP hota hai
+      DB_NAME: testdb
+      DB_USER: root
+      DB_PASS: localpassword123
+    depends_on:
+      - db                   # Pehle database chalega, phir web app start hogi
+
+volumes:
+  mysql_data:                # Isse aapka data safe rahega, container delete hone par bhi uray ga nahi
