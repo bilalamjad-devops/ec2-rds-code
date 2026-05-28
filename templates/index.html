@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AWS 3-Tier Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; padding: 30px; }
+        .box { max-width: 600px; margin: auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .highlight { color: #ff9900; font-weight: bold; }
+        input[type=text], input[type=email] { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
+        input[type=submit] { background: #ff9900; border: none; padding: 10px 20px; color: white; cursor: pointer; }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h2>AWS 3-Tier Enterprise Lab</h2>
+    <p>Served From Instance ID: <span class="highlight">{{ instance_id }}</span></p>
+    <p>Availability Zone: <span class="highlight">{{ az }}</span></p>
+    <hr>
+    <h3>Submit Info to RDS</h3>
+    
+    {% if db_error %}
+        <p style="color: red;"><b>⚠️ DB Alert: {{ db_error }}</b></p>
+    {% else %}
+        <p style="color: #ff9900;"><b>✓ Connected to MySQL Database ({{ db_host }})</b></p>
+    {% endif %}
+
+    <form method="POST">
+        Name: <input type="text" name="name" required><br>
+        Email: <input type="email" name="email" required><br>
+        <input type="submit" value="Submit Data">
+    </form>
+    
+    {% if msg %}
+        <p style="color: green;"><b>{{ msg }}</b></p>
+    {% endif %}
+</div>
+</body>
+</html>
