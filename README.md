@@ -1,16 +1,8 @@
 # ec2-rds-code
 
-Yes, I understand completely! You want a **universal lab app** that is lightweight and handles your infrastructure setups without breaking:
 
-1. **Standalone Mode:** Connects an EC2 instance directly to an RDS database.
-2. **Scale Mode (ALB + ASG):** Works perfectly when multi-instanced behind an Application Load Balancer. It dynamically grabs the correct **Instance ID** and **Availability Zone** on the fly via the AWS Metadata service (`IMDSv2`).
-3. **Local/Docker Ready:** It can run locally on your laptop, and we can package it into a **Docker Image** so it can run absolutely anywhere.
 
-To make this completely painless, we are choosing **Python with Flask**. It is easier to debug locally, doesn't require configuring heavy web server modules like Apache, and builds into a tiny Docker container.
 
-Here is the path to make this work, starting manually on your machine, then transforming it into a container.
-
----
 
 ## 💻 Step 1: The App Code (`app.py`)
 
