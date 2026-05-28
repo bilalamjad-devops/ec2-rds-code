@@ -51,7 +51,7 @@ HTML_TEMPLATE = """
 </head>
 <body>
 <div class="box">
-    <h2>AWS 3-Tier Enterprise Lab</h2>
+    <h2>EC2 + RDS</h2>
     <p>Served From Instance ID: <span class="highlight">{{ instance_id }}</span></p>
     <p>Availability Zone: <span class="highlight">{{ az }}</span></p>
     <hr>
