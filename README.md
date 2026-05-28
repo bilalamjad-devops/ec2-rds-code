@@ -136,8 +136,8 @@ def index():
     )
 
 if __name__ == "__main__":
-    # Runs on port 8080 by default for easy testing
-    app.run(host="0.0.0.0", port=8080)
+    # Runs on port 5000 by default for easy testing
+    app.run(host="0.0.0.0", port=5000)
 
 ```
 
@@ -161,7 +161,7 @@ python app.py
 ```
 
 
-3. Open `http://localhost:8080` in your browser.
+3. Open `http://localhost:5000` in your browser.
 
 > You will see your exact UI panel layout! It will show a database error because no local MySQL instance is running yet, which confirms the verification path is working cleanly.
 
@@ -184,8 +184,8 @@ RUN pip install --no-cache-dir flask requests pymysql
 # Copy our app file into the container
 COPY app.py .
 
-# Expose Web Port 8080
-EXPOSE 8080
+# Expose Web Port 5000
+EXPOSE 5000
 
 # Execute the application
 CMD ["python", "app.py"]
@@ -198,12 +198,12 @@ CMD ["python", "app.py"]
 # 1. Build the image
 docker build -t aws-3tier-app:v1 .
 
-# 2. Spin up the container on port 8080
-docker run -p 8080:8080 aws-3tier-app:v1
+# 2. Spin up the container on port 5000
+docker run -p 5000:5000 aws-3tier-app:v1
 
 ```
 
-Go back to your browser at `http://localhost:8080`—now your containerized deployment is running exactly the same way.
+Go back to your browser at `http://localhost:5000`—now your containerized deployment is running exactly the same way.
 
 ---
 
@@ -236,8 +236,8 @@ ${python_content}
 EOF
 
 # 5. Launch app on standard HTTP port 80 in background mode
-# Change 'port=8080' to 'port=80' at runtime execution
-sed -i 's/port=8080/port=80/g' /var/local/app.py
+# Change 'port=5000' to 'port=80' at runtime execution
+sed -i 's/port=5000/port=80/g' /var/local/app.py
 nohup python3 /var/local/app.py > /var/log/app_engine.log 2>&1 &
 
 ```
@@ -313,7 +313,7 @@ services:
     container_name: local_python_web
     restart: always
     ports:
-      - "8080:8080"
+      - "5000:5000"
     environment:
       DB_HOST: db            # Docker network mein container ka naam hi uski host IP hota hai
       DB_NAME: testdb
@@ -338,6 +338,6 @@ docker-compose up --build
 
 
 3. Docker automatic MySQL ka image download karega, aapki Python app ka image build karega, aur dono ko ek hi internal network par connect kar ke start kar dega.
-4. Apne browser mein open karein: `http://localhost:8080`
+4. Apne browser mein open karein: `http://localhost:5000`
 
 Aapki poori 3-Tier Enterprise Lab aapke laptop par bina kisi AWS cost ke chalne lagegi! Jab lab khatam ho jaye, toh terminal mein `Ctrl + C` dabayein aur `docker-compose down` kar ke containers ko stop kar dein.
