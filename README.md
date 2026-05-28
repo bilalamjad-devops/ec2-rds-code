@@ -2,6 +2,14 @@
 
 
 
+```code
+pip install flask requests pymysql
+```
+
+```py
+python app.py
+```
+
 
 
 ## 💻 Step 1: The App Code (`app.py`)
